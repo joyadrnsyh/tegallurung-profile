@@ -1,0 +1,221 @@
+/* =================================================================
+   STYLE.CSS - WEBSITE PROFIL DESA TEGALLURUNG
+   Versi Desain Final Terstruktur
+   ================================================================= */
+
+/* == 1. Global & Variabel Desain == */
+/* ================================= */
+
+:root {
+    /* Palet Warna Utama */
+    --bs-primary: #4A90E2;      /* Biru Ceria */
+    --bs-primary-rgb: 74, 144, 226;
+    --bs-secondary: #50E3C2;   /* Mint Segar */
+    --bs-success: #2ecc71;
+    --bs-warning: #f1c40f;
+    --bs-danger: #e74c3c;
+    --bs-dark: #2c3e50;
+    
+    /* Warna Sistem */
+    --bs-body-font-family: 'Poppins', sans-serif;
+    --bs-body-color: #34495e;
+    --bs-body-bg: #f9fafb;
+    --bs-border-color: #e9ecef;
+    --bs-border-radius: 0.8rem;
+    
+    /* Variabel Desain Kustom */
+    --brand-gradient: linear-gradient(135deg, var(--bs-primary) 0%, var(--bs-secondary) 100%);
+    --shadow-sm: 0 4px 6px rgba(0, 0, 0, 0.04);
+    --shadow-md: 0 10px 20px rgba(0, 0, 0, 0.08);
+    --shadow-lg: 0 20px 40px rgba(0, 0, 0, 0.12);
+    --transition-normal: all 0.3s ease-in-out;
+}
+
+/* Reset Dasar & Tipografi */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { font-family: var(--bs-body-font-family); line-height: 1.8; }
+.main-container { padding-top: 80px; }
+h1, h2, h3, h4, h5, h6 { font-weight: 700; color: var(--bs-dark); }
+section { padding: 4rem 0; }
+
+/* == 2. Komponen Umum (Reusable) == */
+/* =================================== */
+
+/* Tombol */
+.btn {
+    padding: 12px 30px;
+    border-radius: 50px;
+    font-weight: 600;
+    transition: var(--transition-normal);
+}
+.btn:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+}
+
+/* Kartu */
+.card {
+    border: 1px solid var(--bs-border-color);
+    transition: var(--transition-normal);
+}
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--bs-primary);
+}
+
+/* Judul Section */
+.section-title-gradient {
+    background: -webkit-linear-gradient(45deg, var(--bs-primary), var(--bs-secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 700;
+}
+
+/* == 3. Halaman Publik == */
+/* ======================= */
+
+/* Navbar Publik */
+.custom-navbar {
+    background-color: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+.nav-link.active {
+    color: var(--bs-primary) !important;
+}
+
+/* Hero Section */
+.hero-gradient {
+    background: var(--brand-gradient);
+    padding: 5rem 0;
+}
+.hero-gradient h1 {
+    text-shadow: 0 3px 6px rgba(0,0,0,0.2);
+}
+
+/* Ikon Fitur (Layanan) */
+.feature-icon {
+    width: 4.5rem; height: 4.5rem;
+    box-shadow: var(--shadow-md);
+}
+
+/* Galeri */
+.gallery-card {
+    display: block; position: relative; overflow: hidden;
+    border-radius: var(--bs-border-radius);
+    box-shadow: var(--shadow-sm);
+    aspect-ratio: 1 / 1;
+    transition: var(--transition-normal);
+}
+.gallery-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: var(--shadow-lg);
+}
+.gallery-card img {
+    width: 100%; height: 100%; object-fit: cover;
+    transition: transform 0.4s ease;
+}
+.gallery-card:hover img {
+    transform: scale(1.1);
+}
+.gallery-overlay {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    display: flex; flex-direction: column; align-items: center;
+    justify-content: center; text-align: center; padding: 1rem;
+    background-color: rgba(var(--bs-primary-rgb), 0.8);
+    color: #fff;
+    opacity: 0;
+    transition: var(--transition-normal);
+}
+.gallery-card:hover .gallery-overlay {
+    opacity: 1;
+}
+.gallery-overlay i, .gallery-overlay .overlay-text {
+    opacity: 0; transform: translateY(20px);
+}
+.gallery-overlay i { font-size: 3rem; transition: all 0.4s ease 0.1s; }
+.gallery-overlay .overlay-text { font-weight: 600; font-size: 1.1rem; margin-top: 0.5rem; transition: all 0.4s ease 0.2s; }
+.gallery-card:hover .gallery-overlay i, .gallery-card:hover .gallery-overlay .overlay-text {
+    opacity: 1; transform: translateY(0);
+}
+
+
+/* == 4. Admin Panel == */
+/* ==================== */
+:root {
+    --sidebar-width: 250px;
+    --sidebar-bg: #ffffff;
+    --sidebar-link-color: #6c757d;
+    --sidebar-link-hover-color: #212529;
+    --sidebar-active-bg: #344767;
+}
+
+.admin-body { background-color: #f8f9fa; }
+.main-content-wrapper { width: calc(100% - var(--sidebar-width)); margin-left: var(--sidebar-width); transition: margin-left 0.3s; }
+
+/* Sidebar */
+.sidebar-wrapper {
+    width: var(--sidebar-width); height: 100vh; background: var(--sidebar-bg);
+    position: fixed; top: 0; left: 0; z-index: 1050; display: flex;
+    flex-direction: column; border-right: 1px solid var(--bs-border-color);
+    transition: margin-left 0.3s;
+}
+.sidebar-header { padding: 1.25rem 1.5rem; font-size: 1.1rem; font-weight: 600; border-bottom: 1px solid var(--bs-border-color); }
+.sidebar-brand { text-decoration: none; color: inherit; display: inline-flex; align-items: center; gap: 0.5rem; }
+.sidebar-nav { padding: 1rem 0.75rem; flex-grow: 1; }
+.nav-heading { color: #8392AB; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
+.sidebar-nav .nav-link {
+    color: var(--sidebar-link-color); padding: 0.75rem 1rem; margin: 0.1rem 0;
+    border-radius: 0.5rem; display: flex; align-items: center; font-weight: 500;
+}
+.sidebar-nav .nav-link:hover { background: #f8f9fa; color: var(--sidebar-link-hover-color); }
+.sidebar-nav .nav-link.active { background: var(--sidebar-active-bg); color: #fff; font-weight: 600; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+
+/* Navbar Atas Admin */
+.main-content-wrapper .navbar { background-color: #fff; }
+
+/* Dashboard Statistik Cards */
+.stat-card {
+    transition: var(--transition-normal);
+    border: 1px solid var(--bs-border-color);
+}
+.stat-icon-wrapper {
+    font-size: 2.5rem; width: 70px; height: 70px;
+    border-radius: 50%; display: flex;
+    align-items: center; justify-content: center;
+}
+
+/* Logic Toggle Sidebar */
+#adminWrapper.toggled .sidebar-wrapper { margin-left: calc(-1 * var(--sidebar-width)); }
+#adminWrapper.toggled .main-content-wrapper { width: 100%; margin-left: 0; }
+
+@media (max-width: 991.98px) {
+    .sidebar-wrapper { margin-left: calc(-1 * var(--sidebar-width)); }
+    .main-content-wrapper { width: 100%; margin-left: 0; }
+    #adminWrapper.toggled .sidebar-wrapper { margin-left: 0; }
+}
+
+/* Styling untuk Kartu Padukuhan */
+.padukuhan-card .card-header {
+    border-radius: var(--bs-border-radius) var(--bs-border-radius) 0 0 !important;
+}
+
+.padukuhan-card .card-body h5 {
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+/* Styling untuk Ikon Sosial Media di Footer */
+.footer-modern .social-icon {
+    font-size: 2.2rem; /* Sesuaikan ukuran ikon di sini */
+    color: #fff; /* Warna ikon putih */
+    margin: 0 8px; /* Jarak antar ikon */
+    transition: color 0.3s ease; /* Efek transisi saat hover */
+    text-decoration: none; /* Menghilangkan garis bawah pada link */
+}
+
+.footer-modern .social-icon:hover {
+    color: var(--bs-primary); /* Ubah warna saat dihover (misal: warna primary Bootstrap) */
+}
